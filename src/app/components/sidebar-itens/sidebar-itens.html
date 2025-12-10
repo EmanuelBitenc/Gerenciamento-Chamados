@@ -1,1 +1,6 @@
-<p>sidebar-itens works!</p>
+<li class="mb-2">
+    <a [routerLink]="routerLink" routerLinkActive="menu-link bg-blue-500/30 border-l-4 border-blue-500" class="flex justify-between items-center py-3 px-4 no-underline text-white rounded-lg hover:bg-blue-500/50" [routerLinkActiveOptions]="{exact: true}">
+
+        <span>{{ label }}</span><i [class]="icon" routerLinkActive="text-white"></i>
+    </a>
+</li>
