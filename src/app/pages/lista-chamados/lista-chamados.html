@@ -1,1 +1,14 @@
-<p>lista-chamados works!</p>
+<div class="max-w-6xl mx-auto p-8">
+
+    <h1 class="text-white mb-4 text-4xl font-extrabold">Lista de Chamados</h1>
+
+    <p class="text-white/90 mb-8 text-lg">Gerenciamento de chamados de serviço</p>
+
+    <div class="grid grid-cols-4 gap-6 my-8">
+        <app-chamados-cards-resume label="Total de Chamados" [value]="8"></app-chamados-cards-resume>
+        <app-chamados-cards-resume label="Pendentes" [value]="10"></app-chamados-cards-resume>
+        <app-chamados-cards-resume label="Em Andamento" [value]="2"></app-chamados-cards-resume>
+        <app-chamados-cards-resume label="Concluídos" [value]="4"></app-chamados-cards-resume>
+    </div>
+    <app-table-chamados class="mt-10"></app-table-chamados>
+</div>
