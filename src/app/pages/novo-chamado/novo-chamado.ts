@@ -7,7 +7,9 @@ import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
-
+import { DividerModule } from 'primeng/divider';
+import { CardModule } from 'primeng/card';
+import { RouterLink } from '@angular/router';
 interface Categoria {
   label: string;
   value: string;
@@ -23,6 +25,9 @@ interface Categoria {
     FormsModule,
     TextareaModule,
     ButtonModule,
+    DividerModule,
+    CardModule,
+    RouterLink,
   ],
   templateUrl: './novo-chamado.html',
   styleUrl: './novo-chamado.css',
