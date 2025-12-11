@@ -1,10 +1,10 @@
-<nav class=" w-3xs h-full p-4 text-white">
-    <div class=" pt-4 pb-8 mb-8 border-b border-gray-300">
+<nav class=" flex flex-col xl:w-3xs xl:h-full p-4 text-white">
+    <div class=" text-center xl:text-left pt-4 pb-8 mb-8 border-b border-gray-500">
         <h3 class="mb-1 text-xl font-bold">Gerenciamento de Chamados</h3>
         <p class="text-sm text-gray-300">Sistema de Chamados</p>
     </div>
 
-    <ul>
+    <ul class="flex xl:flex-col gap-4 justify-center xl:justify-start">
         <app-sidebar-itens label="Chamados" icon="pi pi-list" routerLink="/"></app-sidebar-itens>
 
         <app-sidebar-itens label="Novo Chamado" icon="pi pi-plus" routerLink="/novoChamado"></app-sidebar-itens>
