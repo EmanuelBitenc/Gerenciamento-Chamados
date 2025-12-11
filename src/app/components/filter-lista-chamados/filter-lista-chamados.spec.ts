@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableChamados } from './table-chamados';
+import { FilterListaChamados } from './filter-lista-chamados';
 
-describe('TableChamados', () => {
-  let component: TableChamados;
-  let fixture: ComponentFixture<TableChamados>;
+describe('FilterListaChamados', () => {
+  let component: FilterListaChamados;
+  let fixture: ComponentFixture<FilterListaChamados>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableChamados]
+      imports: [FilterListaChamados]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableChamados);
+    fixture = TestBed.createComponent(FilterListaChamados);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
-
+import { PaginatorModule } from 'primeng/paginator';
 interface Chamado {
   id: number;
   titulo: string;
@@ -10,13 +11,17 @@ interface Chamado {
 }
 
 @Component({
-  selector: 'app-table-chamados',
-  imports: [TableModule, CommonModule],
-  templateUrl: './table-chamados.html',
-  styleUrl: './table-chamados.css',
+  selector: 'app-cards-chamados',
+  imports: [CardModule, TagModule, CommonModule, PaginatorModule],
+  templateUrl: './cards-chamados.html',
+  styleUrl: './cards-chamados.css',
 })
-export class TableChamados implements OnInit {
+export class CardsChamados implements OnInit {
   chamados: Chamado[] = [];
+  chamadosPaginados: Chamado[] = [];
+  first: number = 0;
+  rows: number = 9;
+  totalRecords: number = 0;
 
   ngOnInit() {
     this.chamados = [
@@ -93,5 +98,17 @@ export class TableChamados implements OnInit {
         categoria: 'Acesso',
       },
     ];
+    this.totalRecords = this.chamados.length;
+    this.updatePaginatedChamados();
+  }
+
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.updatePaginatedChamados();
+  }
+
+  updatePaginatedChamados() {
+    this.chamadosPaginados = this.chamados.slice(this.first, this.first + this.rows);
   }
 }
