@@ -40,9 +40,9 @@ export class TableChamados implements OnInit {
       },
       {
         id: 4,
-        titulo: 'Interface quebrada',
-        descricao: 'A interface está com problemas de layout no mobile',
-        categoria: 'Interface',
+        titulo: 'Erro de infra',
+        descricao: 'Servidor indisponível para acesso',
+        categoria: 'Infraestrutura',
       },
       {
         id: 5,
@@ -70,9 +70,9 @@ export class TableChamados implements OnInit {
       },
       {
         id: 9,
-        titulo: 'Menu responsivo',
-        descricao: 'Menu não adapta corretamente em tablets',
-        categoria: 'Interface',
+        titulo: 'Erro de login',
+        descricao: 'Usuários não conseguem fazer login no sistema',
+        categoria: 'Acesso',
       },
       {
         id: 10,
