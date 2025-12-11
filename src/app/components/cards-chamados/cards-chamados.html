@@ -1,0 +1,21 @@
+<div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 ">
+        <p-card *ngFor="let chamado of chamadosPaginados" class="shadow-md ">
+            <ng-template pTemplate="header">
+                <div class="p-4 pb-0">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">#{{ chamado.id }}</span>
+                        <p-tag [value]="chamado.categoria" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{{ chamado.titulo }}</h3>
+                </div>
+            </ng-template>
+
+            <p class="text-gray-600 dark:text-gray-300">{{ chamado.descricao }}</p>
+        </p-card>
+    </div>
+
+    <div class="mt-6">
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" />
+    </div>
+</div>
