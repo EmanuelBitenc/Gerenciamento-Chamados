@@ -8,7 +8,6 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 const CustomAuraPreset = definePreset(Aura, {
-  // Usa a paleta blue do Tailwind (blue.50 ... blue.950)
   semantic: {
     primary: {
       50: '{blue.50}',
