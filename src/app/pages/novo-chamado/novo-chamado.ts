@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { RouterLink } from '@angular/router';
-interface Categoria {
+export interface Categoria {
   label: string;
   value: string;
 }
