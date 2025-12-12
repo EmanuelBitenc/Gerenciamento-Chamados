@@ -3,12 +3,7 @@ import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
-interface Chamado {
-  id: number;
-  titulo: string;
-  descricao: string;
-  categoria: string;
-}
+import { Chamado } from '../../model/chamado';
 
 @Component({
   selector: 'app-cards-chamados',
@@ -60,42 +55,6 @@ export class CardsChamados implements OnInit {
         titulo: 'Cache não funciona',
         descricao: 'Sistema de cache não está funcionando adequadamente',
         categoria: 'Performance',
-      },
-      {
-        id: 7,
-        titulo: 'Reset de senha',
-        descricao: 'Funcionalidade de reset de senha não envia email',
-        categoria: 'Acesso',
-      },
-      {
-        id: 8,
-        titulo: 'Filtros quebrados',
-        descricao: 'Os filtros da listagem não estão funcionando',
-        categoria: 'Funcionalidade',
-      },
-      {
-        id: 9,
-        titulo: 'Erro de login',
-        descricao: 'Usuários não conseguem fazer login no sistema',
-        categoria: 'Acesso',
-      },
-      {
-        id: 10,
-        titulo: 'Backup falhou',
-        descricao: 'O backup automático falhou na execução',
-        categoria: 'Infraestrutura',
-      },
-      {
-        id: 11,
-        titulo: 'API lenta',
-        descricao: 'Endpoints da API estão com tempo de resposta elevado',
-        categoria: 'Performance',
-      },
-      {
-        id: 12,
-        titulo: 'Permissões incorretas',
-        descricao: 'Usuários vendo dados que não deveriam ter acesso',
-        categoria: 'Acesso',
       },
     ];
     this.totalRecords = this.chamados.length;
