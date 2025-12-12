@@ -8,6 +8,7 @@
         <app-chamados-cards-resume label="Funcionalidade" [value]="2"></app-chamados-cards-resume>
         <app-chamados-cards-resume label="Infraestrutura" [value]="4"></app-chamados-cards-resume>
     </div>
-    <app-filter-lista-chamados></app-filter-lista-chamados>
-    <app-cards-chamados></app-cards-chamados>
+    <app-filter-lista-chamados (filtrosChange)="aplicarFiltros($event)"></app-filter-lista-chamados>
+    <div *ngIf="chamadosFiltrados.length === 0" class="text-center font-bold text-xl mx-auto my-10">Nenhum chamado encontrado com os filtros aplicados.</div>
+    <div *ngIf="chamadosFiltrados.length > 0"><app-cards-chamados [chamadosFiltrados]="chamadosFiltrados"></app-cards-chamados></div>
 </div>

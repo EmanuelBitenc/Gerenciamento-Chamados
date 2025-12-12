@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectorRef,
+  AfterViewInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
@@ -13,14 +20,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   templateUrl: './cards-chamados.html',
   styleUrl: './cards-chamados.css',
 })
-export class CardsChamados implements AfterViewInit {
+export class CardsChamados implements AfterViewInit, OnChanges {
+  @Input() chamadosFiltrados: Chamado[] = [];
+
   chamadosList: Chamado[] = [];
   chamadosPaginados: Chamado[] = [];
   primeiro: number = 0;
   quantidadePagina: number = 6;
   totalChamados: number = 0;
-
-  isLoading: boolean = true;
 
   constructor(private chamadoService: ChamadoService, private cdr: ChangeDetectorRef) {}
 
@@ -28,20 +35,26 @@ export class CardsChamados implements AfterViewInit {
     this.carregarChamados();
   }
 
-  carregarChamados() {
-    this.isLoading = true;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['chamadosFiltrados'] && !changes['chamadosFiltrados'].firstChange) {
+      this.chamadosList = this.chamadosFiltrados;
+      this.totalChamados = this.chamadosList.length;
+      this.primeiro = 0;
+      this.chamadosPaginadosUpdate();
+      this.cdr.detectChanges();
+    }
+  }
 
+  carregarChamados() {
     this.chamadoService.getChamados().subscribe({
       next: (response: Chamado[]) => {
         this.chamadosList = response;
         this.totalChamados = this.chamadosList.length;
         this.chamadosPaginadosUpdate();
-        this.isLoading = false;
         this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Erro ao buscar chamados:', error);
-        this.isLoading = false;
         this.cdr.detectChanges();
       },
     });

@@ -4,10 +4,10 @@
 
         <p-iconfield iconPosition="left" class="w-full sm:flex-1">
             <p-inputicon styleClass="pi pi-search" />
-            <input pInputText id="pesquisar" name="pesquisar" placeholder="Pesquisar chamados" class="w-full p-3 border-2 border-gray-700 rounded-lg bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition duration-300" />
+            <input pInputText id="pesquisar" name="pesquisar" [(ngModel)]="pesquisa" (ngModelChange)="onFiltroChange()" placeholder="Pesquisar chamados" class="w-full" />
         </p-iconfield>
 
-        <p-select [options]="categorias" name="categoria" [(ngModel)]="selectedCategoria" optionLabel="label" placeholder=" Categorias" inputId="categoria" class="w-full sm:w-auto" [showClear]="true">
+        <p-select [options]="categorias" name="categoria" [(ngModel)]="selectedCategoria" (onChange)="onFiltroChange()" optionLabel="label" placeholder=" Categorias" inputId="categoria" class="w-full sm:w-auto" [showClear]="true">
         </p-select>
     </div>
 
