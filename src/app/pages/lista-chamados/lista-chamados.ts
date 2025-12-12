@@ -18,6 +18,22 @@ export class ListaChamados implements AfterViewInit {
   todosChamados: Chamado[] = [];
   chamadosFiltrados: Chamado[] = [];
 
+  get quantidadePerformance(): number {
+    return this.todosChamados.filter((c) => c.categoria === 'Performance').length;
+  }
+
+  get quantidadeAcesso(): number {
+    return this.todosChamados.filter((c) => c.categoria === 'Acesso').length;
+  }
+
+  get quantidadeFuncionalidade(): number {
+    return this.todosChamados.filter((c) => c.categoria === 'Funcionalidade').length;
+  }
+
+  get quantidadeInfraestrutura(): number {
+    return this.todosChamados.filter((c) => c.categoria === 'Infraestrutura').length;
+  }
+
   constructor(private chamadoService: ChamadoService) {}
 
   ngAfterViewInit() {
