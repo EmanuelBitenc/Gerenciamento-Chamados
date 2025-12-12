@@ -17,8 +17,8 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { Router } from '@angular/router';
-import { ChamadoService } from '../../services/chamado-service/chamado-service';
-import { Chamado } from '../../model/chamado';
+import { ChamadoService } from '../../core/services/chamado-service/chamado-service';
+import { Chamado } from '../../core/model/chamado';
 
 export interface Categoria {
   label: string;

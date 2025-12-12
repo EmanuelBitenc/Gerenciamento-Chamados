@@ -8,7 +8,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { RouterLink } from '@angular/router';
-import { FiltrosChamados } from '../../model/filtrosChamado';
+import { FiltrosChamados } from '../../core/model/filtrosChamado';
 
 @Component({
   selector: 'app-filter-lista-chamados',

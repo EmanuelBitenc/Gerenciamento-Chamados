@@ -10,9 +10,9 @@ import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
-import { Chamado } from '../../model/chamado';
-import { ChamadoService } from '../../services/chamado-service/chamado-service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { Chamado } from '../../core/model/chamado';
+import { ChamadoService } from '../../core/services/chamado-service/chamado-service';
 
 @Component({
   selector: 'app-cards-chamados',
