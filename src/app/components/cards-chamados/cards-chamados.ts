@@ -1,73 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { Chamado } from '../../model/chamado';
+import { ChamadoService } from '../../services/chamado-service/chamado-service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-cards-chamados',
-  imports: [CardModule, TagModule, CommonModule, PaginatorModule],
+  imports: [CardModule, TagModule, CommonModule, PaginatorModule, ProgressSpinnerModule],
   templateUrl: './cards-chamados.html',
   styleUrl: './cards-chamados.css',
 })
-export class CardsChamados implements OnInit {
-  chamados: Chamado[] = [];
+export class CardsChamados implements AfterViewInit {
+  chamadosList: Chamado[] = [];
   chamadosPaginados: Chamado[] = [];
-  first: number = 0;
-  rows: number = 9;
-  totalRecords: number = 0;
+  primeiro: number = 0;
+  quantidadePagina: number = 6;
+  totalChamados: number = 0;
 
-  ngOnInit() {
-    this.chamados = [
-      {
-        id: 1,
-        titulo: 'Sistema lento',
-        descricao: 'O sistema está apresentando lentidão ao carregar as páginas',
-        categoria: 'Performance',
-      },
-      {
-        id: 2,
-        titulo: 'Erro de login',
-        descricao: 'Usuários não conseguem fazer login no sistema',
-        categoria: 'Acesso',
-      },
-      {
-        id: 3,
-        titulo: 'Relatório não gera',
-        descricao: 'O relatório mensal não está sendo gerado corretamente',
-        categoria: 'Funcionalidade',
-      },
-      {
-        id: 4,
-        titulo: 'Erro de infra',
-        descricao: 'Servidor indisponível para acesso',
-        categoria: 'Infraestrutura',
-      },
-      {
-        id: 5,
-        titulo: 'Banco de dados',
-        descricao: 'Erro de conexão com o banco de dados',
-        categoria: 'Infraestrutura',
-      },
-      {
-        id: 6,
-        titulo: 'Cache não funciona',
-        descricao: 'Sistema de cache não está funcionando adequadamente',
-        categoria: 'Performance',
-      },
-    ];
-    this.totalRecords = this.chamados.length;
-    this.updatePaginatedChamados();
+  isLoading: boolean = true;
+
+  constructor(private chamadoService: ChamadoService, private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.carregarChamados();
   }
 
-  onPageChange(event: any) {
-    this.first = event.first;
-    this.rows = event.rows;
-    this.updatePaginatedChamados();
+  carregarChamados() {
+    this.isLoading = true;
+
+    this.chamadoService.getChamados().subscribe({
+      next: (response: Chamado[]) => {
+        this.chamadosList = response;
+        this.totalChamados = this.chamadosList.length;
+        this.chamadosPaginadosUpdate();
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Erro ao buscar chamados:', error);
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+    });
   }
 
-  updatePaginatedChamados() {
-    this.chamadosPaginados = this.chamados.slice(this.first, this.first + this.rows);
+  onTrocaPagina(event: any) {
+    this.primeiro = event.first;
+    this.quantidadePagina = event.rows;
+    this.chamadosPaginadosUpdate();
+    this.cdr.detectChanges();
+  }
+
+  chamadosPaginadosUpdate() {
+    this.chamadosPaginados = this.chamadosList.slice(
+      this.primeiro,
+      this.primeiro + this.quantidadePagina
+    );
   }
 }
