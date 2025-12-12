@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChamadosCardsResume } from '../../components/chamados-cards-resume/chamados-cards-resume';
 import { Headerpages } from '../../components/headerpages/headerpages';
@@ -14,7 +14,7 @@ import { FiltrosChamados } from '../../core/model/filtrosChamado';
   templateUrl: './lista-chamados.html',
   styleUrl: './lista-chamados.css',
 })
-export class ListaChamados implements AfterViewInit {
+export class ListaChamados implements OnInit {
   todosChamados: Chamado[] = [];
   chamadosFiltrados: Chamado[] = [];
 
@@ -34,19 +34,18 @@ export class ListaChamados implements AfterViewInit {
     return this.todosChamados.filter((c) => c.categoria === 'Infraestrutura').length;
   }
 
-  constructor(private chamadoService: ChamadoService) {}
+  constructor(private chamadoService: ChamadoService, private cdr: ChangeDetectorRef) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.carregarChamados();
   }
 
   carregarChamados() {
     this.chamadoService.getChamados().subscribe({
       next: (chamados) => {
-        setTimeout(() => {
-          this.todosChamados = chamados;
-          this.chamadosFiltrados = chamados;
-        }, 0);
+        this.todosChamados = chamados;
+        this.chamadosFiltrados = chamados;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Erro ao carregar chamados:', error);
