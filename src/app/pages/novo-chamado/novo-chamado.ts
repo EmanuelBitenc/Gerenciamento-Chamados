@@ -17,8 +17,10 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { Router } from '@angular/router';
-import { ChamadoService } from '../../services/chamado-service/chamado-service';
-import { Chamado } from '../../model/chamado';
+import { ChamadoService } from '../../core/services/chamado-service/chamado-service';
+import { Chamado } from '../../core/model/chamado';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 export interface Categoria {
   label: string;
@@ -39,8 +41,10 @@ export interface Categoria {
     TextareaModule,
     ButtonModule,
     DividerModule,
+    ToastModule,
     CardModule,
   ],
+  providers: [MessageService],
   templateUrl: './novo-chamado.html',
   styleUrl: './novo-chamado.css',
 })
@@ -51,7 +55,8 @@ export class NovoChamado implements OnInit {
   constructor(
     private fb: FormBuilder,
     private chamadoService: ChamadoService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -79,9 +84,21 @@ export class NovoChamado implements OnInit {
       };
 
       this.chamadoService.salvarChamado(novoChamado);
+      this.showSuccess();
 
-      this.router.navigate(['/']);
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1500);
     }
+  }
+
+  showSuccess() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Sucesso!',
+      detail: 'Chamado criado com sucesso',
+      life: 3000,
+    });
   }
 
   cancelar() {
