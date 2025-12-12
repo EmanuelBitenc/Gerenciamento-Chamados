@@ -1,4 +1,9 @@
-<div>
+<div *ngIf="isLoading" class="flex flex-col gap-2 justify-center items-center h-80">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="3"></p-progressSpinner>
+    <p class="ml-4 text-gray-600">Carregando chamados...</p>
+</div>
+
+<div *ngIf="!isLoading">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 ">
         <p-card *ngFor="let chamado of chamadosPaginados" class="shadow-md ">
             <ng-template pTemplate="header">
@@ -16,6 +21,6 @@
     </div>
 
     <div class="mt-6">
-        <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" />
+        <p-paginator [first]="primeiro" [rows]="quantidadePagina" [totalRecords]="totalChamados" (onPageChange)="onTrocaPagina($event)" />
     </div>
 </div>
