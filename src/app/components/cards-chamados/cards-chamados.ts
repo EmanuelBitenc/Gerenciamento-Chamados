@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   templateUrl: './cards-chamados.html',
   styleUrl: './cards-chamados.css',
 })
-export class CardsChamados implements OnInit {
+export class CardsChamados implements AfterViewInit {
   chamadosList: Chamado[] = [];
   chamadosPaginados: Chamado[] = [];
   primeiro: number = 0;
@@ -24,7 +24,7 @@ export class CardsChamados implements OnInit {
 
   constructor(private chamadoService: ChamadoService, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.carregarChamados();
   }
 
