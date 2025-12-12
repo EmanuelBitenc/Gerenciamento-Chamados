@@ -43,8 +43,9 @@ export class ListaChamados implements OnInit {
   carregarChamados() {
     this.chamadoService.getChamados().subscribe({
       next: (chamados) => {
-        this.todosChamados = chamados;
-        this.chamadosFiltrados = chamados;
+        const chamadosOrdenados = chamados.sort((a, b) => b.id - a.id);
+        this.todosChamados = chamadosOrdenados;
+        this.chamadosFiltrados = chamadosOrdenados;
         this.cdr.detectChanges();
       },
       error: (error) => {

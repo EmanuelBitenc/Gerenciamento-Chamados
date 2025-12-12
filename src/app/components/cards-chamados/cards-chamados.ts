@@ -48,7 +48,8 @@ export class CardsChamados implements AfterViewInit, OnChanges {
   carregarChamados() {
     this.chamadoService.getChamados().subscribe({
       next: (response: Chamado[]) => {
-        this.chamadosList = response;
+        const chamadosOrdenados = response.sort((a, b) => b.id - a.id);
+        this.chamadosList = chamadosOrdenados;
         this.totalChamados = this.chamadosList.length;
         this.chamadosPaginadosUpdate();
         this.cdr.detectChanges();
