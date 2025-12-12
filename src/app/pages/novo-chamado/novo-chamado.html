@@ -7,7 +7,7 @@
     <div class="mt-6 md:mt-8">
         <p-card styleClass="shadow-2xl" [style]="{'padding': '0', 'border-radius': '1rem', 'border': '1px solid #374151'}">
 
-            <form class="p-0 md:p-8 space-y-6">
+            <form [formGroup]="chamadoForm" (ngSubmit)="criarChamado()" class="p-0 md:p-8 space-y-6">
 
 
                 <div class="space-y-1">
@@ -16,8 +16,11 @@
                         Título do Chamado
                     </label>
                     <p-floatlabel class="w-full">
-                        <input pInputText id="titulo" name="titulo" class="w-full" placeholder="Digite o titulo do chamado" />
+                        <input pInputText id="titulo" formControlName="titulo" class="w-full" placeholder="Digite o titulo do chamado" />
                     </p-floatlabel>
+                    <small *ngIf="chamadoForm.get('titulo')?.invalid && chamadoForm.get('titulo')?.touched" class="text-red-500">
+                        Título é obrigatório (mínimo 3 caracteres)
+                    </small>
                 </div>
 
 
@@ -26,7 +29,10 @@
                         <i class="pi pi-align-left mr-2 text-blue-500"></i>
                         Descrição Detalhada
                     </label>
-                    <textarea pTextarea id="descricao" name="descricao" rows="6" class="w-full text-gray-300" placeholder="Descreva o problema ou solicitação em detalhes" [autoResize]="true"></textarea>
+                    <textarea pTextarea id="descricao" formControlName="descricao" rows="6" class="w-full text-gray-300" placeholder="Descreva o problema ou solicitação em detalhes" [autoResize]="true"></textarea>
+                    <small *ngIf="chamadoForm.get('descricao')?.invalid && chamadoForm.get('descricao')?.touched" class="text-red-500">
+                        Descrição é obrigatória (mínimo 10 caracteres)
+                    </small>
                 </div>
 
 
@@ -35,8 +41,11 @@
                         <i class="pi pi-tag mr-2 text-blue-500"></i>
                         Categoria
                     </label>
-                    <p-select [options]="categorias" name="categoria" [(ngModel)]="selectedCategoria" optionLabel="label" placeholder="Selecione a Categoria" inputId="categoria" class="w-full" [showClear]="true">
+                    <p-select [options]="categorias" formControlName="categoria" optionLabel="label" placeholder="Selecione a Categoria" inputId="categoria" class="w-full" [showClear]="true">
                     </p-select>
+                    <small *ngIf="chamadoForm.get('categoria')?.invalid && chamadoForm.get('categoria')?.touched" class="text-red-500">
+                        Categoria é obrigatória
+                    </small>
                 </div>
 
 
@@ -44,8 +53,8 @@
 
 
                 <div class="flex flex-col sm:flex-row gap-3 justify-end pt-4">
-                    <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [outlined]="true" styleClass="w-full sm:w-auto" [routerLink]="'/'" />
-                    <p-button label="Criar Chamado" icon="pi pi-check" severity="primary" styleClass="w-full sm:w-auto" />
+                    <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [outlined]="true" styleClass="w-full sm:w-auto" type="button" (onClick)="cancelar()" />
+                    <p-button label="Criar Chamado" icon="pi pi-check" severity="primary" styleClass="w-full sm:w-auto" type="submit" [disabled]="chamadoForm.invalid" />
                 </div>
 
             </form>
