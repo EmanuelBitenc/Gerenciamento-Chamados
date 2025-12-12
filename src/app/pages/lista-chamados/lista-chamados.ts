@@ -4,9 +4,9 @@ import { ChamadosCardsResume } from '../../components/chamados-cards-resume/cham
 import { Headerpages } from '../../components/headerpages/headerpages';
 import { FilterListaChamados } from '../../components/filter-lista-chamados/filter-lista-chamados';
 import { CardsChamados } from '../../components/cards-chamados/cards-chamados';
-import { ChamadoService } from '../../services/chamado-service/chamado-service';
-import { Chamado } from '../../model/chamado';
-import { FiltrosChamados } from '../../model/filtrosChamado';
+import { Chamado } from '../../core/model/chamado';
+import { ChamadoService } from '../../core/services/chamado-service/chamado-service';
+import { FiltrosChamados } from '../../core/model/filtrosChamado';
 
 @Component({
   selector: 'app-lista-chamados',
