@@ -22,7 +22,7 @@ export class ChamadoService {
     return this.http.get<Chamado[]>(this.apiUrl).pipe(
       map((chamadosApi: Chamado[]) => {
         const chamadosLocal = this.getChamadosLocalStorage();
-        return [...chamadosApi, ...chamadosLocal];
+        return [...chamadosLocal, ...chamadosApi];
       })
     );
   }
@@ -48,7 +48,7 @@ export class ChamadoService {
 
   private gerarNovoId(chamadosExistentes: Chamado[]): number {
     if (chamadosExistentes.length === 0) {
-      return 1000;
+      return 7;
     }
     const maiorId = Math.max(...chamadosExistentes.map((c) => c.id));
     return maiorId + 1;
