@@ -11,4 +11,12 @@
     <app-filter-lista-chamados (filtrosChange)="aplicarFiltros($event)"></app-filter-lista-chamados>
     <div *ngIf="chamadosFiltrados.length === 0" class="text-center font-bold text-xl mx-auto my-10">Nenhum chamado encontrado com os filtros aplicados.</div>
     <div *ngIf="chamadosFiltrados.length > 0"><app-cards-chamados [chamadosFiltrados]="chamadosFiltrados"></app-cards-chamados></div>
+
+
+    <p-toast position="bottom-center" />
+
+
+    <div class="text-center mt-10 my-2">
+        <span class="text-gray-400 underline cursor-pointer hover:text-gray-500 transition-colors" (click)="limparLocalStorage()">Limpar local storage</span>
+    </div>
 </div>

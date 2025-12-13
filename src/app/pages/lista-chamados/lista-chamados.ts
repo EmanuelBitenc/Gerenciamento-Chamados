@@ -7,10 +7,20 @@ import { CardsChamados } from '../../components/cards-chamados/cards-chamados';
 import { Chamado } from '../../core/model/chamado';
 import { ChamadoService } from '../../core/services/chamado-service/chamado-service';
 import { FiltrosChamados } from '../../core/model/filtrosChamado';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lista-chamados',
-  imports: [CommonModule, ChamadosCardsResume, Headerpages, FilterListaChamados, CardsChamados],
+  imports: [
+    CommonModule,
+    ChamadosCardsResume,
+    Headerpages,
+    FilterListaChamados,
+    CardsChamados,
+    ToastModule,
+  ],
+  providers: [MessageService],
   templateUrl: './lista-chamados.html',
   styleUrl: './lista-chamados.css',
 })
@@ -34,7 +44,11 @@ export class ListaChamados implements OnInit {
     return this.todosChamados.filter((c) => c.categoria === 'Infraestrutura').length;
   }
 
-  constructor(private chamadoService: ChamadoService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private chamadoService: ChamadoService,
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.carregarChamados();
@@ -65,5 +79,16 @@ export class ListaChamados implements OnInit {
 
       return matchPesquisa && matchCategoria;
     });
+  }
+
+  limparLocalStorage() {
+    this.chamadoService.limparChamadosLocais();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Sucesso!',
+      detail: 'Local storage limpo com sucesso',
+      life: 1000,
+    });
+    this.carregarChamados();
   }
 }
