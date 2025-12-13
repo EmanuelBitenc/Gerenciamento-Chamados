@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { Categoria } from '../../pages/novo-chamado/novo-chamado';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -9,6 +8,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { RouterLink } from '@angular/router';
 import { FiltrosChamados } from '../../core/model/filtrosChamado';
+import { Categoria } from '../../core/model/categoria';
 
 @Component({
   selector: 'app-filter-lista-chamados',
