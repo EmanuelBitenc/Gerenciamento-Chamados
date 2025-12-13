@@ -362,4 +362,5 @@ Durante o desenvolvimento, foram utilizadas ferramentas de IA como apoio:
 **Emanuel Bitencourt**
 
 - GitHub: [@EmanuelBitenc](https://github.com/EmanuelBitenc)
-- LinkedIn: [Emanuel Bitencourt](https://www.linkedin.com/in/emanuel-bitencourt/)
+- LinkedIn: [Emanuel Bitencourt](https://www.linkedin.com/in/emanuelbitencourt/)
+
