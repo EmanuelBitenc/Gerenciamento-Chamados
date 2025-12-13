@@ -62,10 +62,10 @@ export class ChamadoService {
     chamadosLocal = chamadosLocal.filter((c) => c.id !== id);
     localStorage.setItem(this.localStorageKey, JSON.stringify(chamadosLocal));
   }
-
+*/
   limparChamadosLocais(): void {
     if (!this.isBrowser) return;
 
     localStorage.removeItem(this.localStorageKey);
-  } */
+  }
 }
