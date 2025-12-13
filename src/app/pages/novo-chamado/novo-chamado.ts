@@ -21,11 +21,7 @@ import { ChamadoService } from '../../core/services/chamado-service/chamado-serv
 import { Chamado } from '../../core/model/chamado';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
-export interface Categoria {
-  label: string;
-  value: string;
-}
+import { Categoria } from '../../core/model/categoria';
 
 @Component({
   selector: 'app-novo-chamado',
@@ -80,7 +76,7 @@ export class NovoChamado implements OnInit {
         id: 0,
         titulo: this.chamadoForm.value.titulo,
         descricao: this.chamadoForm.value.descricao,
-        categoria: this.chamadoForm.value.categoria.value || this.chamadoForm.value.categoria,
+        categoria: this.chamadoForm.value.categoria.value,
       };
 
       this.chamadoService.salvarChamado(novoChamado);
