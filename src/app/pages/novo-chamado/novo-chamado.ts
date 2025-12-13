@@ -90,7 +90,7 @@ export class NovoChamado implements OnInit {
 
   showSuccess() {
     this.messageService.add({
-      severity: 'info',
+      severity: 'success',
       summary: 'Sucesso!',
       detail: 'Chamado criado com sucesso',
       life: 3000,
